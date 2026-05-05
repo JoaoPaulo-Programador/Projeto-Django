@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Recarga.Agora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #F5F7FA;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background: #1E88E5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-login {
+            background: #1E88E5;
+            color: white;
+        }
+
+        .btn-login:hover {
+            background: #1565C0;
+        }
+
+        .btn-cadastro {
+            background: #00C853;
+            color: white;
+        }
+
+        .btn-cadastro:hover {
+            background: #00A844;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    Recarga.Agora
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>Bem-vindo</h2>
+        <p>Recarregue seu cartão de ônibus de forma rápida e fácil.</p>
+
+        <a href="{% url 'login' %}" class="btn btn-login">Entrar</a>
+
+        <a href="{% url 'cadastro' %}" class="btn btn-cadastro">Criar Conta</a>
+    </div>
+</div>
+
+</body>
+</html>
