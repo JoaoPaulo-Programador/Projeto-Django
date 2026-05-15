@@ -86,7 +86,11 @@
 
 <div class="login-container">
     <h2>Entrar</h2>
-
+    {% if erro %}
+    <p style="color: red; text-align: center; margin-bottom: 10px;">
+        {{ erro }}
+    </p>
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
 

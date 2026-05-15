@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Recarga - Recarga.Agora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #F5F7FA;
+        }
+
+        header {
+            background: #1E88E5;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        select {
+            width: 100%;
+            padding: 11px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-confirmar {
+            background: #00C853;
+            color: white;
+        }
+
+        .btn-confirmar:hover {
+            background: #00A844;
+        }
+
+        .btn-voltar {
+            background: #1E88E5;
+            color: white;
+        }
+
+        .btn-voltar:hover {
+            background: #1565C0;
+        }
+
+        .erro {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    Recarga.Agora
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>Recarregar Cartão</h2>
+
+        {% if erro %}
+            <p class="erro">{{ erro }}</p>
+        {% endif %}
+
+        {% if cartoes %}
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <label>Escolha o cartão</label>
+                    <select name="cartao_id" required>
+                        <option value="">Selecione um cartão</option>
+
+                        {% for cartao in cartoes %}
+                            <option value="{{ cartao.id }}">
+                                {{ cartao.apelido }} - {{ cartao.numero }} - Saldo: R$ {{ cartao.saldo }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Valor da recarga</label>
+                    <select name="valor" required>
+                        <option value="">Selecione um valor</option>
+                        <option value="10.00">R$ 10,00</option>
+                        <option value="20.00">R$ 20,00</option>
+                        <option value="30.00">R$ 30,00</option>
+                        <option value="50.00">R$ 50,00</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Forma de pagamento</label>
+                    <select name="forma_pagamento" required>
+                        <option value="">Selecione</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Cartão">Cartão</option>
+                        <option value="Boleto">Boleto</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-confirmar">
+                    Confirmar Recarga
+                </button>
+            </form>
+        {% else %}
+            <p>Você ainda não possui cartão cadastrado.</p>
+        {% endif %}
+
+        <a href="{% url 'dashboard' %}" class="btn btn-voltar">
+            Voltar para o Dashboard
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
