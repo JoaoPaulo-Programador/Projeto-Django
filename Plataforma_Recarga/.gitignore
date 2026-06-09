@@ -1,5 +1,10 @@
-venv/
 __pycache__/
 *.pyc
-db.sqlite3
 .env
+.vscode/
+.idea/
+*.log
+*.tmp
+db.sqlite3
+venv/
+env/
